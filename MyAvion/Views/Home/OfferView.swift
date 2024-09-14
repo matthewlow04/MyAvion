@@ -48,7 +48,7 @@ struct OfferView: View {
             }
             
             VStack(alignment: .leading, spacing: 10){
-                Text("Aritzia")
+                Text("BillGong")
                     .font(.system(size: 18))
                 Text("Earn 2x Avion points when you shop at Aritzia, only for you")
                     .font(.system(size: 13))
