@@ -19,7 +19,9 @@ struct ContentView: View {
             Text("")
                 .tabItem { Label("Redeem", systemImage: "star") }
             Text("")
-                .tabItem { Label("More", systemImage: "line.3.horizontal") }            
+                .tabItem { Label("More", systemImage: "line.3.horizontal") }   
+            TestView()
+                .tabItem { Label("Test", systemImage: "testtube.2") }
         }
     }
 }
