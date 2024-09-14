@@ -14,6 +14,13 @@
 		A0AECAD72C9630300012191B /* MyAvionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AECAD62C9630300012191B /* MyAvionTests.swift */; };
 		A0AECAE12C9630300012191B /* MyAvionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AECAE02C9630300012191B /* MyAvionUITests.swift */; };
 		A0AECAE32C9630300012191B /* MyAvionUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AECAE22C9630300012191B /* MyAvionUITestsLaunchTests.swift */; };
+		A0AECAF52C9630C40012191B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AECAF42C9630C40012191B /* HomeView.swift */; };
+		A0AECAF72C9630CE0012191B /* OfferView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AECAF62C9630CE0012191B /* OfferView.swift */; };
+		A0AECAF92C9630F90012191B /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AECAF82C9630F90012191B /* ExploreView.swift */; };
+		A0AECAFC2C9631160012191B /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AECAFB2C9631160012191B /* MapView.swift */; };
+		A0AECAFE2C96316F0012191B /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AECAFD2C96316F0012191B /* MapViewModel.swift */; };
+		A0AECB002C9631900012191B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AECAFF2C9631900012191B /* Location.swift */; };
+		A0AECB022C9633860012191B /* CompanyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AECB012C9633860012191B /* CompanyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +51,13 @@
 		A0AECADC2C9630300012191B /* MyAvionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyAvionUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0AECAE02C9630300012191B /* MyAvionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAvionUITests.swift; sourceTree = "<group>"; };
 		A0AECAE22C9630300012191B /* MyAvionUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAvionUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A0AECAF42C9630C40012191B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		A0AECAF62C9630CE0012191B /* OfferView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferView.swift; sourceTree = "<group>"; };
+		A0AECAF82C9630F90012191B /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
+		A0AECAFB2C9631160012191B /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		A0AECAFD2C96316F0012191B /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		A0AECAFF2C9631900012191B /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		A0AECB012C9633860012191B /* CompanyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +108,10 @@
 		A0AECAC42C96302F0012191B /* MyAvion */ = {
 			isa = PBXGroup;
 			children = (
+				A0AECAF12C96309C0012191B /* Views */,
+				A0AECAF02C9630960012191B /* ViewModels */,
+				A0AECAEF2C9630920012191B /* Models */,
 				A0AECAC52C96302F0012191B /* MyAvionApp.swift */,
-				A0AECAC72C96302F0012191B /* ContentView.swift */,
 				A0AECAC92C9630300012191B /* Assets.xcassets */,
 				A0AECACB2C9630300012191B /* Preview Content */,
 			);
@@ -125,6 +141,59 @@
 				A0AECAE22C9630300012191B /* MyAvionUITestsLaunchTests.swift */,
 			);
 			path = MyAvionUITests;
+			sourceTree = "<group>";
+		};
+		A0AECAEF2C9630920012191B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A0AECAFF2C9631900012191B /* Location.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A0AECAF02C9630960012191B /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				A0AECAFD2C96316F0012191B /* MapViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		A0AECAF12C96309C0012191B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A0AECAC72C96302F0012191B /* ContentView.swift */,
+				A0AECAF32C9630BE0012191B /* Home */,
+				A0AECAF22C9630B80012191B /* Explore */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A0AECAF22C9630B80012191B /* Explore */ = {
+			isa = PBXGroup;
+			children = (
+				A0AECAF82C9630F90012191B /* ExploreView.swift */,
+			);
+			path = Explore;
+			sourceTree = "<group>";
+		};
+		A0AECAF32C9630BE0012191B /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				A0AECAFA2C96310B0012191B /* MapView */,
+				A0AECAF42C9630C40012191B /* HomeView.swift */,
+				A0AECAF62C9630CE0012191B /* OfferView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		A0AECAFA2C96310B0012191B /* MapView */ = {
+			isa = PBXGroup;
+			children = (
+				A0AECAFB2C9631160012191B /* MapView.swift */,
+				A0AECB012C9633860012191B /* CompanyView.swift */,
+			);
+			path = MapView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,8 +326,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0AECAF52C9630C40012191B /* HomeView.swift in Sources */,
+				A0AECAFC2C9631160012191B /* MapView.swift in Sources */,
+				A0AECB002C9631900012191B /* Location.swift in Sources */,
 				A0AECAC82C96302F0012191B /* ContentView.swift in Sources */,
 				A0AECAC62C96302F0012191B /* MyAvionApp.swift in Sources */,
+				A0AECAFE2C96316F0012191B /* MapViewModel.swift in Sources */,
+				A0AECAF72C9630CE0012191B /* OfferView.swift in Sources */,
+				A0AECAF92C9630F90012191B /* ExploreView.swift in Sources */,
+				A0AECB022C9633860012191B /* CompanyView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +501,7 @@
 				DEVELOPMENT_TEAM = 2V9PJ4F97F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs your location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -454,6 +531,7 @@
 				DEVELOPMENT_TEAM = 2V9PJ4F97F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs your location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
