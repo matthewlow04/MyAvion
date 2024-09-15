@@ -122,5 +122,25 @@ class DataManager: ObservableObject{
         }
         
     }
-    
+
+    func fetchRbcID(firebaseID: String) async -> Int? {
+        let db = Firestore.firestore()
+        let ref = db.collection("Connections").document(firebaseID)
+        
+        do {
+            let document = try await ref.getDocument()
+            
+            if let data = document.data(){
+               let rbcID = data["RbcId"] as? Int
+               return rbcID
+            } else {
+                print("Document does not exist or rbcId not found")
+                return nil
+            }
+        } catch {
+            print("Error fetching document: \(error.localizedDescription)")
+            return nil
+        }
+    }
+
 }

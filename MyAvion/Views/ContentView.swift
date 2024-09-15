@@ -10,6 +10,7 @@ import FirebaseAuth
 
 struct ContentView: View {
     @StateObject var loginViewModel = LoginViewModel()
+    @EnvironmentObject var dataManager: DataManager
     
     var body: some View {
         VStack {
@@ -34,6 +35,7 @@ struct ContentView: View {
         }
         .onAppear {
             loginViewModel.user = Auth.auth().currentUser
+            
         }
         .animation(.easeInOut, value: loginViewModel.user != nil)
     }
