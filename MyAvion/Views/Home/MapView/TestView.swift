@@ -10,6 +10,7 @@ import SwiftUI
 //TODO
 struct TestView: View {
     @EnvironmentObject var dataManager: DataManager
+    @EnvironmentObject var rbcManager: RBCManager
     var body: some View {
         VStack{
             Text("Promotions")

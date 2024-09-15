@@ -10,9 +10,14 @@ import FirebaseAuth
 
 struct HomeView: View {
     @Binding var user: User? 
+    @EnvironmentObject var dataManager: DataManager
+    @EnvironmentObject var rbcManager: RBCManager
+    @State var balance: Int?
+    @State var isLoadingPoints = false
     
     var body: some View {
         NavigationStack {
+            
             ScrollView {
                 VStack(alignment: .leading) {
                     HStack {
@@ -56,7 +61,23 @@ struct HomeView: View {
                     MapView()
                 }
                 .padding()
-                .navigationTitle("12,300 pts")
+                .navigationTitle(Text("\(balance ?? 0) points"))
+                .onAppear{
+                    Task{
+                        isLoadingPoints = true
+                        if let rbcID = await dataManager.fetchRbcID(firebaseID: user?.uid ?? ""){
+                                                        
+                            if let member = await rbcManager.getMember(memberId: rbcID){
+                                balance = member.balance
+                            }
+                            
+                        }
+                        isLoadingPoints = false
+                    }
+                   
+
+                }
+                
             }
         }
     }

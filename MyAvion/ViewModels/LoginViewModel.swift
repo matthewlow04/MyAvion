@@ -56,7 +56,7 @@ class LoginViewModel: ObservableObject {
                 self.showingAlert = true
                 
                 Task{
-                    if let rbcMember =  await RBCManager().createMember(memberBody: MemberBody(name: "asdfads", address: "asdfas", phone: "asdfsa", email: self.email, balance: 0)){
+                    if let rbcMember =  await RBCManager().createMember(memberBody: MemberBody(name: "asdfads", address: "asdfas", phone: "asdfsa", email: self.email, balance: 1000)){
                         let connection = IdConnection(rbcID: rbcMember.id, firebaseID: result.user.uid)
                         DataManager().addConnection(idConnection: connection)
                     }
