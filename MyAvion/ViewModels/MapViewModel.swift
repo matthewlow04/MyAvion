@@ -7,21 +7,38 @@
 
 import Foundation
 import MapKit
+import SwiftUI
 
 
 class MapViewModel: ObservableObject{
-    @Published var selectedCategory: Location.LocationCategory = .entertainment
-    var filteredLocations: [Location]{
+    @Published var selectedCategory: Company.businessCategory = .none
+    @Published var selectedSortOption: Company.sortType = .expiryDate
+    var companies: [Company] = []
+    var filteredCompanies: [Company]{
         switch selectedCategory {
+        case .none:
+            return companies
         case .dining:
-            return Location.mockLocations.filter{$0.category == .dining}
+            return companies.filter{$0.businessCategory == Company.businessCategory.dining.rawValue}
         case .entertainment:
-            return Location.mockLocations.filter{$0.category == .entertainment}
+            return companies.filter{$0.businessCategory == Company.businessCategory.entertainment.rawValue}
         case .grocery:
-            return Location.mockLocations.filter{$0.category == .grocery}
+            return companies.filter{$0.businessCategory == Company.businessCategory.grocery.rawValue}
         case .retail:
-            return Location.mockLocations.filter{$0.category == .retail}
+            return companies.filter{$0.businessCategory == Company.businessCategory.retail.rawValue}
             
+        }
+    }
+    
+    var sortedCompanies: [Company] {
+        switch selectedSortOption {
+        case .distance:
+            return filteredCompanies
+        case .expiryDate:
+            return filteredCompanies
+            
+        case .mostPoints:
+            return filteredCompanies
         }
     }
     

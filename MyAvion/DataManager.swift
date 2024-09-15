@@ -54,9 +54,46 @@ class DataManager: ObservableObject{
         print(self.rewards.count)
     }
     
-    func fetchCompanies(){
+    func fetchCompanies() async {
         companies.removeAll()
+        let db = Firestore.firestore()
+        let ref = db.collection("Companies")
+        
+        do {
+            let snapshot = try await ref.getDocuments()
+            for document in snapshot.documents {
+                let data = document.data()
+                let id = data["id"] as? String ?? ""
+                let name = data["name"] as? String ?? ""
+                let address = data["address"] as? String ?? ""
+                let coordinatesData = data["coordinates"] as? [String: Double] ?? [:]
+                let coordinates = Coordinates(
+                    latitude: coordinatesData["latitude"] ?? 0.0,
+                    longitude: coordinatesData["longitude"] ?? 0.0
+                )
+                let businessCategory = data["businessCategory"] as? String ?? ""
+                
+                let rewards: [Reward] = []
+                let promotions: [Promotion] = [] 
+                
+                let company = Company(
+                    id: UUID(uuidString: id) ?? UUID(),
+                    name: name,
+                    address: address,
+                    coordinates: coordinates,
+                    businessCategory: businessCategory,
+                    rewards: rewards,
+                    promotions: promotions
+                )
+                self.companies.append(company)
+            }
+        } catch {
+            print("Error fetching companies: \(error.localizedDescription)")
+        }
+        
+        print("Fetched companies count: \(self.companies.count)")
     }
+
     
     func fetchPromotions() async{
         promotions.removeAll()
