@@ -13,7 +13,7 @@ struct TestView: View {
     var body: some View {
         VStack{
             Button("Add Promotion"){
-                dataManager.addPromotions(companyID: "AB1234", name: "Starbucks", points: 100, startDate: Date.now, endDate: Date.now)
+                dataManager.addPromotions(companyID: "ZZ3451", name: "Lazeez", points: 50, startDate: Date.now, endDate: Date.now)
             }
             Button("Fetch Promotion"){
                 Task{
