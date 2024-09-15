@@ -65,12 +65,7 @@ struct MapView: View {
                 Spacer()
             }
             .padding()
-            .onAppear{
-                Task{
-                    await dataManager.fetchCompanies()
-                }
-                
-            }
+            
 
             VStack(spacing: 20){
                 ForEach(dataManager.companies){ company in
