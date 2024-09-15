@@ -11,9 +11,15 @@ struct Company: Identifiable{
     var id = UUID()
     var name: String
     var address: String
+    var coordinates: Coordinates
     var businessCategory: String
     var rewards: [Reward]
     var promotions: [Promotion]
+}
+
+struct Coordinates {
+    var latitude: Double
+    var longitude: Double
 }
 
 struct Reward: Identifiable{
@@ -22,7 +28,7 @@ struct Reward: Identifiable{
     var name: String
     var pointCost: Int
     var startDate: Date
-    var endDate: Date
+    var expiryDate: Date
 }
 
 struct Promotion: Identifiable{
