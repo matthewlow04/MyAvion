@@ -28,8 +28,22 @@ struct TestView: View {
             Text("Rewards")
                 .font(.system(size: 20))
             Button("Add Reward"){
-                dataManager.addRewards(companyID: "ZZ3451", name: "Free Medium Shawarma", points: 600, startDate: Date.now, expiryDate: Date.now)
+                dataManager.addRewards(companyID: "JW334", name: "Free Drink", pointCost: 150, startDate: Date.now, expiryDate: Date.now)
             }
+            Button("Fetch Reward"){
+                Task{
+                    await dataManager.fetchRewards()
+                    for reward in dataManager.rewards {
+                        print(reward.name)
+                    }
+                }
+            }
+            Text("Companies")
+                .font(.system(size: 20))
+            Button("Add Company"){
+                dataManager.addCompany(name: "Lazeez", address: "170 University Avenue West", coordinates: Coordinates(latitude: 43.47441932085694, longitude: -80.5388761323675), businessCategory: "Food and Drink")
+            }
+            
         }
         
     }

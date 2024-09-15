@@ -15,16 +15,44 @@ class DataManager: ObservableObject{
     
     // FETCH
     //
-    func addRewards(companyID: String, name: String, points: Int, startDate: Date, expiryDate: Date){
+    func addRewards(companyID: String, name: String, pointCost: Int, startDate: Date, expiryDate: Date){
         let db = Firestore.firestore()
         let id = UUID()
         
         let ref = db.collection("Rewards").document(name)
-        ref.setData(["id": id.uuidString, "name":name, "pointCost":points, "companyId":companyID, "startDate": Timestamp(date: startDate), "expiryDate": Timestamp(date: expiryDate)]){ error in
+        ref.setData(["id": id.uuidString, "name":name, "pointCost":pointCost, "companyId":companyID, "startDate": Timestamp(date: startDate), "expiryDate": Timestamp(date: expiryDate)]){ error in
             if let error = error{
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    func fetchRewards() async{
+        rewards.removeAll()
+        let db = Firestore.firestore()
+        let ref = db.collection("Rewards")
+        
+        do {
+            let snapshot = try await ref.getDocuments()
+            for document in snapshot.documents{
+                let data = document.data()
+                let id = data["id"] as? String ?? ""
+                let name = data["name"] as? String ?? ""
+                let pointCost = data["points"] as? Int ?? -1
+                let companyId = data["companyID"] as? String ?? ""
+                let startDate = data["startDate"] as? Timestamp ?? Timestamp(date: Date.now)
+                let expiryDate = data["startDate"] as? Timestamp ?? Timestamp(date: Date.now)
+                
+                
+                let reward = Reward(id: UUID(uuidString: id)!, companyId: companyId, name: name, pointCost: pointCost, startDate: startDate.dateValue(), expiryDate: expiryDate.dateValue())
+                self.rewards.append(reward)
+            }
+        } catch {
+            print("error")
+        }
+
+        print("fetch")
+        print(self.rewards.count)
     }
     
     func fetchCompanies(){
@@ -54,15 +82,7 @@ class DataManager: ObservableObject{
         } catch {
             print("error")
         }
-//        ref.getDocuments { snapshot, error in
-//            guard error == nil else{
-//                print(error!.localizedDescription)
-//                return
-//            }
-    
-        
-//            if let snapshot = snapshot{
-            
+
         print("fetch")
         print(self.promotions.count)
     }
@@ -74,6 +94,19 @@ class DataManager: ObservableObject{
         
         let ref = db.collection("Promotions").document(name)
         ref.setData(["id": id.uuidString, "name":name, "points":points, "companyID":companyID, "startDate": Timestamp(date: startDate), "endDate": Timestamp(date: endDate)]){ error in
+            if let error = error{
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func addCompany(name: String, address: String, coordinates: Coordinates, businessCategory: String){
+        let db = Firestore.firestore()
+        let id = UUID()
+        let coordinatesDict = ["latitude": coordinates.latitude, "longitude": coordinates.longitude]
+        
+        let ref = db.collection("Companies").document(name)
+        ref.setData(["id": id.uuidString, "name":name, "address":address, "coordinates":coordinatesDict, "businessCategory": businessCategory]){ error in
             if let error = error{
                 print(error.localizedDescription)
             }
