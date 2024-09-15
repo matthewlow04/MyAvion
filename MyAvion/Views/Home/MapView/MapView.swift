@@ -67,6 +67,7 @@ struct MapView: View {
                 Spacer()
             }
             .padding()
+
             .onAppear{
                 Task{
                    

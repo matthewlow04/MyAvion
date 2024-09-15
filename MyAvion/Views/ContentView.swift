@@ -35,7 +35,11 @@ struct ContentView: View {
         }
         .onAppear {
             loginViewModel.user = Auth.auth().currentUser
-            
+            Task{
+                await dataManager.fetchCompanies()
+                await dataManager.fetchRewards()
+                await dataManager.fetchPromotions()
+            }
         }
         .animation(.easeInOut, value: loginViewModel.user != nil)
     }

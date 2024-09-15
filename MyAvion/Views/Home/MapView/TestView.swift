@@ -16,7 +16,10 @@ struct TestView: View {
             Text("Promotions")
                 .font(.system(size: 20))
             Button("Add Promotion"){
-                dataManager.addPromotions(companyID: "ZZ3451", name: "Lazeez", points: 50, startDate: Date.now, endDate: Date.now, imageUrl: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fvector%2Fbig-smile-emoticon-with-thumbs-up-gm1124532572-295250550&psig=AOvVaw1yHFLweMRLVrgPaU4W85H5&ust=1726470869231000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLDV26izxIgDFQAAAAAdAAAAABAJ")
+                dataManager.addPromotions(companyId: "ZZ3451", name: "Lazeez", points: 50, startDate: Date.now, endDate: Date.now, imageUrl: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fvector%2Fbig-smile-emoticon-with-thumbs-up-gm1124532572-295250550&psig=AOvVaw1yHFLweMRLVrgPaU4W85H5&ust=1726470869231000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLDV26izxIgDFQAAAAAdAAAAABAJ")
+            }
+            Button("Add Promotion to Company"){
+                dataManager.addPromotionToCompany(companyId: "2EF2A7E0-D063-4343-BC83-BC82DEB855F9", promotionId: "C908BC93-F3F0-4E25-B205-959E113DAF5B")
             }
             Button("Add Promotion to Company"){
                 dataManager.addPromotionToCompany(companyId: "2EF2A7E0-D063-4343-BC83-BC82DEB855F9", promotionId: "C908BC93-F3F0-4E25-B205-959E113DAF5B")

@@ -40,8 +40,9 @@ struct HomeView: View {
                         .font(.largeTitle)
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 30) {
-                            ForEach(0..<2) { _ in
-                                OfferView()
+                            ForEach(dataManager.rewards) { reward in
+                                let company = dataManager.fetchCompanyById(companyId: reward.companyId)
+                                OfferView(logo: reward.imageUrl, image: reward.imageUrl, name: company?.name ?? "", description: reward.name, time: "2 days")
                             }
                         }
                         .padding()
@@ -52,6 +53,11 @@ struct HomeView: View {
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 30) {
+
+                            ForEach(dataManager.promotions) { promotion in
+                                let company = dataManager.fetchCompanyById(companyId: promotion.companyID)
+                                OfferView(logo: promotion.imageUrl, image: promotion.imageUrl, name: company?.name ?? "", description: promotion.name, time: "2 days")
+
                             ForEach(0..<2) { _ in
                                 Button {
                                     isShowingOffer = true

@@ -49,7 +49,7 @@ struct Reward: Identifiable{
 
 struct Promotion: Identifiable{
     var id = UUID()
-    var companyId: String
+    var companyID: String
     var name: String
     var points: Int
     var startDate: Date
