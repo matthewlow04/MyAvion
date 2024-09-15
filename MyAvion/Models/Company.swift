@@ -39,3 +39,22 @@ struct Promotion: Identifiable{
     var startDate: Date
     var endDate: Date
 }
+
+struct FirebaseMember: Identifiable{
+    var id = UUID()
+    var memberId: String
+    var nomination: NominatedCompany
+    var approvedCompanies: [ApprovedCompany]
+}
+
+struct NominatedCompany: Identifiable{
+    var id = UUID()
+    var companyId: String
+    var nominators: [FirebaseMember]
+}
+
+struct ApprovedCompany: Identifiable{
+    var id = UUID()
+    var companyId: String
+    var nominators: [FirebaseMember]
+}

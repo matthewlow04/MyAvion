@@ -10,6 +10,7 @@ import SwiftUI
 //TODO
 struct TestView: View {
     @EnvironmentObject var dataManager: DataManager
+    @EnvironmentObject var rbcManager: RBCManager
     var body: some View {
         VStack{
             Text("Promotions")
@@ -43,6 +44,34 @@ struct TestView: View {
             Button("Add Company"){
                 dataManager.addCompany(name: "Lazeez", address: "170 University Avenue West", coordinates: Coordinates(latitude: 43.47441932085694, longitude: -80.5388761323675), businessCategory: "Food and Drink")
             }
+            Text("RBC Members")
+                .font(.system(size: 20))
+            Button("Add Member"){
+                Task{
+                    await rbcManager.createMember(memberBody: MemberBody(name: "Kate Jordan", address: "23 LeBron Road", phone: "41690903322", email: "katejordan99@gmail.com", balance: 500))
+                }
+            }
+            Button("Activate Member"){
+                Task{
+                    await rbcManager.activateMember(memberId: 528)
+                }
+            }
+            Button("Fetch Member"){
+                Task{
+                    if let member = await rbcManager.getMember(memberId: 528){
+                        print(member.name)
+                    } else {
+                        print("aw man")
+                    }
+                }
+            }
+            Text("Transactions")
+            Button("Create Transaction"){
+                Task{
+                    await rbcManager.createTransaction(memberId: 528, transactionBody: TransactionBody(amount: 21, note: "Gas Discount", type: "PAYMENT"))
+                }
+            }
+            Text("Firebase Members")
             
         }
         
