@@ -14,12 +14,12 @@ class DataManager: ObservableObject{
     @Published var promotions: [Promotion] = []
     @Published var idConnections: [IdConnection] = []
     
-    func addRewards(companyID: String, name: String, pointCost: Int, startDate: Date, expiryDate: Date){
+    func addRewards(companyID: String, name: String, pointCost: Int, startDate: Date, expiryDate: Date, imageUrl: String){
         let db = Firestore.firestore()
         let id = UUID()
         
         let ref = db.collection("Rewards").document(name)
-        ref.setData(["id": id.uuidString, "name":name, "pointCost":pointCost, "companyId":companyID, "startDate": Timestamp(date: startDate), "expiryDate": Timestamp(date: expiryDate)]){ error in
+        ref.setData(["id": id.uuidString, "name":name, "pointCost":pointCost, "companyId":companyID, "startDate": Timestamp(date: startDate), "expiryDate": Timestamp(date: expiryDate), "imageUrl": imageUrl]){ error in
             if let error = error{
                 print(error.localizedDescription)
             }
@@ -41,9 +41,10 @@ class DataManager: ObservableObject{
                 let companyId = data["companyID"] as? String ?? ""
                 let startDate = data["startDate"] as? Timestamp ?? Timestamp(date: Date.now)
                 let expiryDate = data["startDate"] as? Timestamp ?? Timestamp(date: Date.now)
+                let imageURL = data["imageUrl"] as? String ?? ""
                 
                 
-                let reward = Reward(id: UUID(uuidString: id)!, companyId: companyId, name: name, pointCost: pointCost, startDate: startDate.dateValue(), expiryDate: expiryDate.dateValue())
+                let reward = Reward(id: UUID(uuidString: id)!, companyId: companyId, name: name, pointCost: pointCost, startDate: startDate.dateValue(), expiryDate: expiryDate.dateValue(), imageUrl: imageURL)
                 self.rewards.append(reward)
             }
         } catch {
@@ -110,9 +111,10 @@ class DataManager: ObservableObject{
                 let companyID = data["companyID"] as? String ?? ""
                 let startDate = data["startDate"] as? Timestamp ?? Timestamp(date: Date.now)
                 let endDate = data["startDate"] as? Timestamp ?? Timestamp(date: Date.now)
+                let imageUrl = data["imageURL"] as? String ?? ""
                 
                 
-                let promotion = Promotion(id: UUID(uuidString: id)!, companyId: companyID, name: name, points: points, startDate: startDate.dateValue(), endDate: endDate.dateValue())
+                let promotion = Promotion(id: UUID(uuidString: id)!, companyId: companyID, name: name, points: points, startDate: startDate.dateValue(), endDate: endDate.dateValue(), imageUrl: imageUrl)
                 self.promotions.append(promotion)
             }
         } catch {
@@ -124,12 +126,12 @@ class DataManager: ObservableObject{
     }
     
     
-    func addPromotions(companyID: String, name: String, points: Int, startDate: Date, endDate: Date){
+    func addPromotions(companyID: String, name: String, points: Int, startDate: Date, endDate: Date, imageUrl: String){
         let db = Firestore.firestore()
         let id = UUID()
         
         let ref = db.collection("Promotions").document(name)
-        ref.setData(["id": id.uuidString, "name":name, "points":points, "companyID":companyID, "startDate": Timestamp(date: startDate), "endDate": Timestamp(date: endDate)]){ error in
+        ref.setData(["id": id.uuidString, "name":name, "points":points, "companyID":companyID, "startDate": Timestamp(date: startDate), "endDate": Timestamp(date: endDate), "imageUrl": imageUrl]){ error in
             if let error = error{
                 print(error.localizedDescription)
             }
@@ -141,12 +143,19 @@ class DataManager: ObservableObject{
         let id = UUID()
         let coordinatesDict = ["latitude": coordinates.latitude, "longitude": coordinates.longitude]
         
-        let ref = db.collection("Companies").document(name)
+        let ref = db.collection("Companies").document(id.uuidString)
         ref.setData(["id": id.uuidString, "name":name, "address":address, "coordinates":coordinatesDict, "businessCategory": businessCategory, "rewards": [], "promotions": []]){ error in
             if let error = error{
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    func addRewardToCompany(companyId: String, rewardId: String){
+        let db = Firestore.firestore()
+        let ref = db.collection("Companies").document(companyId)
+        
+        ref.updateData(["rewards": FieldValue.arrayUnion([rewardId])])
     }
     
     func addConnection(idConnection: IdConnection){

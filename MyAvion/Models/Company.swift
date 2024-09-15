@@ -44,6 +44,7 @@ struct Reward: Identifiable{
     var pointCost: Int
     var startDate: Date
     var expiryDate: Date
+    var imageUrl: String
 }
 
 struct Promotion: Identifiable{
@@ -53,6 +54,7 @@ struct Promotion: Identifiable{
     var points: Int
     var startDate: Date
     var endDate: Date
+    var imageUrl: String
 }
 
 struct FirebaseMember: Identifiable{
