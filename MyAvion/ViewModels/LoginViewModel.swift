@@ -37,7 +37,7 @@ class LoginViewModel: ObservableObject {
         }
     }
 
-    func register() {
+    func register() async {
         if !validEmailAddress(){
             alertMessage = "Enter a valid email"
             showingAlert = true
@@ -50,13 +50,22 @@ class LoginViewModel: ObservableObject {
                 self.showingAlert = true
                 return
             }
-
-            if result != nil {
+            if let result = result {
                 self.showingSignUp = false
                 self.alertMessage = "User Created"
                 self.showingAlert = true
+                
+                Task{
+                    if let rbcMember =  await RBCManager().createMember(memberBody: MemberBody(name: "asdfads", address: "asdfas", phone: "asdfsa", email: self.email, balance: 0)){
+                        let connection = IdConnection(rbcID: rbcMember.id, firebaseID: result.user.uid)
+                        DataManager().addConnection(idConnection: connection)
+                    }
+                }
             }
         }
+        
+        
+        
     }
     
     func invalidLogin() -> Bool{

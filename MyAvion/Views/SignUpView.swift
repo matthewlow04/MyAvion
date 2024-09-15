@@ -29,7 +29,10 @@ struct SignUpView: View {
                 .cornerRadius(8)
 
             Button(action: {
-                vm.register()
+                Task{
+                    await vm.register()
+                }
+                
             }) {
                 Text("Sign Up")
                     .frame(maxWidth: .infinity)

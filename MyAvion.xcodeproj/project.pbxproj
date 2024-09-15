@@ -34,6 +34,7 @@
 		A0AECB192C9677850012191B /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AECB182C9677850012191B /* SignUpView.swift */; };
 		A0AECB1D2C9699AC0012191B /* RBCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AECB1C2C9699AC0012191B /* RBCManager.swift */; };
 		A0AECB1F2C9699F20012191B /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AECB1E2C9699F20012191B /* Keys.swift */; };
+		A0AECB232C969E130012191B /* IdConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AECB222C969E130012191B /* IdConnection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		A0AECB182C9677850012191B /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		A0AECB1C2C9699AC0012191B /* RBCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBCManager.swift; sourceTree = "<group>"; };
 		A0AECB1E2C9699F20012191B /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		A0AECB222C969E130012191B /* IdConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdConnection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +180,7 @@
 			children = (
 				A0AECAFF2C9631900012191B /* Location.swift */,
 				A0AECB102C964E2D0012191B /* Company.swift */,
+				A0AECB222C969E130012191B /* IdConnection.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 				A0AECAF52C9630C40012191B /* HomeView.swift in Sources */,
 				A0AECB0F2C964CBC0012191B /* DataManager.swift in Sources */,
 				A0AECAFC2C9631160012191B /* MapView.swift in Sources */,
+				A0AECB232C969E130012191B /* IdConnection.swift in Sources */,
 				A0AECB002C9631900012191B /* Location.swift in Sources */,
 				A0AECAC82C96302F0012191B /* ContentView.swift in Sources */,
 				A0AECB172C9674220012191B /* LoginViewModel.swift in Sources */,
