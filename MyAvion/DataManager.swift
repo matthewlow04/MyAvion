@@ -56,7 +56,9 @@ class DataManager: ObservableObject{
     }
     
     func fetchCompanies() async {
-        companies.removeAll()
+        DispatchQueue.main.async{
+            self.companies.removeAll()
+        }
         let db = Firestore.firestore()
         let ref = db.collection("Companies")
         
