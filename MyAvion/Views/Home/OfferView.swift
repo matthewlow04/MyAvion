@@ -61,6 +61,7 @@ struct OfferView: View {
                     Image(systemName: "clock.fill")
                         .foregroundStyle(.red)
                     Text(time)
+                    Spacer()
                 }
                 .font(.system(size: 13))
               
