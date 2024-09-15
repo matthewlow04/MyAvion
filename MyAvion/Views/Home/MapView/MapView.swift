@@ -17,7 +17,7 @@ struct MapView: View {
     var body: some View {
         VStack {
             Map(position: $position) {
-                ForEach(dataManager.companies) { company in
+                ForEach(vm.filteredCompanies) { company in
                     
                     Marker(company.name, coordinate: CLLocationCoordinate2D(latitude: company.coordinates.latitude, longitude: company.coordinates.longitude))
                         
@@ -37,38 +37,46 @@ struct MapView: View {
             HStack{
                 Menu {
                     Picker("Filter Options", selection: $vm.selectedCategory) {
-                        ForEach(Location.LocationCategory.allCases, id: \.self) { category in
+                        ForEach(Company.businessCategory.allCases, id: \.self) { category in
                             Text(category.rawValue.capitalized).tag(category)
                         }
                     }
                 }
                 label: {
                     VStack{
-                        Text("Sort Type")
+                        Text("Filter Options")
+                            .padding(7)
+                            .background(RoundedRectangle(cornerRadius: 10).stroke(lineWidth: 0.5))
                     }
                     
                 }
-                Menu {
-                    Picker("Sorting Options", selection: $vm.selectedCategory) {
-                        ForEach(Location.LocationCategory.allCases, id: \.self) { category in
-                            Text(category.rawValue.capitalized).tag(category)
-                        }
-                    }
-                }
-                label: {
-                    VStack{
-                        Text("Sort Type")
-                    }
-                    
-                }
+//                Menu {
+//                    Picker("Sorting Options", selection: $vm.selectedSortOption) {
+//                        ForEach(Location.LocationCategory.allCases, id: \.self) { category in
+//                            Text(category.rawValue.capitalized).tag(category)
+//                        }
+//                    }
+//                }
+//                label: {
+//                    VStack{
+//                        Text("Sort Type")
+//                    }
+//                    
+//                }
                 
                 Spacer()
             }
             .padding()
-            
+
+            .onAppear{
+                Task{
+                   
+                }
+                
+            }
 
             VStack(spacing: 20){
-                ForEach(dataManager.companies){ company in
+                ForEach(vm.filteredCompanies){ company in
                     CompanyView(company: company)
                     
                 }

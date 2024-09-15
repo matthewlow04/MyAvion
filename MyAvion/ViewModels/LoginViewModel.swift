@@ -59,6 +59,7 @@ class LoginViewModel: ObservableObject {
                     if let rbcMember =  await RBCManager().createMember(memberBody: MemberBody(name: "asdfads", address: "asdfas", phone: "asdfsa", email: self.email, balance: 1000)){
                         let connection = IdConnection(rbcID: rbcMember.id, firebaseID: result.user.uid)
                         DataManager().addConnection(idConnection: connection)
+                        await RBCManager().activateMember(memberId: rbcMember.id)
                     }
                 }
             }

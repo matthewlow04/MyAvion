@@ -21,6 +21,9 @@ struct TestView: View {
             Button("Add Promotion to Company"){
                 dataManager.addPromotionToCompany(companyId: "2EF2A7E0-D063-4343-BC83-BC82DEB855F9", promotionId: "C908BC93-F3F0-4E25-B205-959E113DAF5B")
             }
+            Button("Add Promotion to Company"){
+                dataManager.addPromotionToCompany(companyId: "2EF2A7E0-D063-4343-BC83-BC82DEB855F9", promotionId: "C908BC93-F3F0-4E25-B205-959E113DAF5B")
+            }
             Button("Fetch Promotion"){
                 Task{
                     await dataManager.fetchPromotions()

@@ -67,11 +67,11 @@ struct FirebaseMember: Identifiable{
 struct NominatedCompany: Identifiable{
     var id = UUID()
     var companyId: String
-    var nominators: [FirebaseMember]
+    var nominators: [Int]
 }
 
 struct ApprovedCompany: Identifiable{
     var id = UUID()
     var companyId: String
-    var nominators: [FirebaseMember]
+    var nominators: [Int]
 }

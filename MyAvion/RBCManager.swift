@@ -202,25 +202,39 @@ class RBCManager: ObservableObject {
         
         request.httpBody = httpBody
         
-        do {
-            let (data, response) = try await URLSession.shared.data(for: request)
-            
-            if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
+        let (data, response) = await performRequest(request)
+        
+        if let httpResponse = response, httpResponse.statusCode == 200 {
+            do {
                 let decoder = JSONDecoder()
-                let transactionResponse = try decoder.decode(TransactionResponse.self, from: data)
+                let transactionResponse = try decoder.decode(TransactionResponse.self, from: data!)
                 print("Transaction created \(transactionResponse.transaction.id)")
                 return transactionResponse.transaction
-
-               
-            } else {
-                print("Failed to create transaction. Status code: \((response as? HTTPURLResponse)?.statusCode ?? 0)")
-                return nil
+            } catch {
+                print("Error decoding transaction response: \(error)")
             }
-        } catch {
-            print("Error creating transaction: \(error)")
-            return nil
+        } else if let httpResponse = response, httpResponse.statusCode == 500 || httpResponse.statusCode == 403 {
+            
+            if await refreshToken() {
+                request.setValue("Bearer \(Keys.rbcKey)", forHTTPHeaderField: "Authorization")
+                let (retryData, retryResponse) = await performRequest(request)
+                if let retryHttpResponse = retryResponse, retryHttpResponse.statusCode == 200 {
+                    do {
+                        let decoder = JSONDecoder()
+                        let transactionResponse = try decoder.decode(TransactionResponse.self, from: retryData!)
+                        print("Transaction created after retry \(transactionResponse.transaction.id)")
+                        return transactionResponse.transaction
+                    } catch {
+                        print("Error decoding retry transaction response: \(error)")
+                    }
+                }
+            }
         }
+        
+        print("Failed to create transaction. Status code: \((response as? HTTPURLResponse)?.statusCode ?? 0)")
+        return nil
     }
+
 
     func login() async -> String? {
         let urlString = baseURL + "/api/v1/auth"
