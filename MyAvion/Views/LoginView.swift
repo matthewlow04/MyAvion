@@ -59,7 +59,7 @@ struct LoginView: View {
         .padding()
         .alert(isPresented: $vm.showingAlert) {
             Alert(
-                title: Text("Error"),
+                title: Text("Alert"),
                 message: Text(vm.alertMessage),
                 dismissButton: .default(Text("OK"))
             )
