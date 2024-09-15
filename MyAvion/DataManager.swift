@@ -12,9 +12,8 @@ class DataManager: ObservableObject{
     @Published var companies: [Company] = []
     @Published var rewards: [Reward] = []
     @Published var promotions: [Promotion] = []
+    @Published var idConnections: [IdConnection] = []
     
-    // FETCH
-    //
     func addRewards(companyID: String, name: String, pointCost: Int, startDate: Date, expiryDate: Date){
         let db = Firestore.firestore()
         let id = UUID()
@@ -50,7 +49,7 @@ class DataManager: ObservableObject{
         } catch {
             print("error")
         }
-
+        
         print("fetch")
         print(self.rewards.count)
     }
@@ -82,11 +81,11 @@ class DataManager: ObservableObject{
         } catch {
             print("error")
         }
-
+        
         print("fetch")
         print(self.promotions.count)
     }
-
+    
     
     func addPromotions(companyID: String, name: String, points: Int, startDate: Date, endDate: Date){
         let db = Firestore.firestore()
@@ -111,6 +110,17 @@ class DataManager: ObservableObject{
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    func addConnection(idConnection: IdConnection){
+        let db = Firestore.firestore()
+        let ref = db.collection("Connections").document(idConnection.firebaseID)
+        ref.setData(["RbcId" : idConnection.rbcID, "FirebaseId": idConnection.firebaseID]){ error in
+            if let error = error{
+                print(error.localizedDescription)
+            }
+        }
+        
     }
     
 }
