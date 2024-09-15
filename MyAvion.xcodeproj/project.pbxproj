@@ -29,6 +29,9 @@
 		A0AECB0F2C964CBC0012191B /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AECB0E2C964CBC0012191B /* DataManager.swift */; };
 		A0AECB112C964E2D0012191B /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AECB102C964E2D0012191B /* Company.swift */; };
 		A0AECB132C9653510012191B /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AECB122C9653510012191B /* TestView.swift */; };
+		A0AECB152C96740B0012191B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AECB142C96740B0012191B /* LoginView.swift */; };
+		A0AECB172C9674220012191B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AECB162C9674220012191B /* LoginViewModel.swift */; };
+		A0AECB192C9677850012191B /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AECB182C9677850012191B /* SignUpView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +73,9 @@
 		A0AECB0E2C964CBC0012191B /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		A0AECB102C964E2D0012191B /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		A0AECB122C9653510012191B /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		A0AECB142C96740B0012191B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		A0AECB162C9674220012191B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		A0AECB182C9677850012191B /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				A0AECAFD2C96316F0012191B /* MapViewModel.swift */,
+				A0AECB162C9674220012191B /* LoginViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -182,6 +189,8 @@
 			isa = PBXGroup;
 			children = (
 				A0AECAC72C96302F0012191B /* ContentView.swift */,
+				A0AECB142C96740B0012191B /* LoginView.swift */,
+				A0AECB182C9677850012191B /* SignUpView.swift */,
 				A0AECAF32C9630BE0012191B /* Home */,
 				A0AECAF22C9630B80012191B /* Explore */,
 			);
@@ -357,15 +366,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0AECB132C9653510012191B /* TestView.swift in Sources */,
+				A0AECB192C9677850012191B /* SignUpView.swift in Sources */,
 				A0AECAF52C9630C40012191B /* HomeView.swift in Sources */,
 				A0AECB0F2C964CBC0012191B /* DataManager.swift in Sources */,
 				A0AECAFC2C9631160012191B /* MapView.swift in Sources */,
 				A0AECB002C9631900012191B /* Location.swift in Sources */,
 				A0AECAC82C96302F0012191B /* ContentView.swift in Sources */,
+				A0AECB172C9674220012191B /* LoginViewModel.swift in Sources */,
 				A0AECAC62C96302F0012191B /* MyAvionApp.swift in Sources */,
 				A0AECAFE2C96316F0012191B /* MapViewModel.swift in Sources */,
 				A0AECB112C964E2D0012191B /* Company.swift in Sources */,
 				A0AECAF72C9630CE0012191B /* OfferView.swift in Sources */,
+				A0AECB152C96740B0012191B /* LoginView.swift in Sources */,
 				A0AECAF92C9630F90012191B /* ExploreView.swift in Sources */,
 				A0AECB022C9633860012191B /* CompanyView.swift in Sources */,
 			);

@@ -6,23 +6,36 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct ContentView: View {
+    @StateObject var loginViewModel = LoginViewModel()
+    
     var body: some View {
-        TabView{
-            HomeView()
-                .tabItem { Label("Home", systemImage: "house.fill") }
-            Text("")
-                .tabItem { Label("Travel", systemImage: "map") }
-            ExploreView()
-                .tabItem{ Label("Offers", systemImage: "magnifyingglass") }
-            Text("")
-                .tabItem { Label("Redeem", systemImage: "star") }
-            Text("")
-                .tabItem { Label("More", systemImage: "line.3.horizontal") }   
-            TestView()
-                .tabItem { Label("Test", systemImage: "testtube.2") }
+        VStack {
+            if let user = loginViewModel.user {
+                TabView {
+                    HomeView(user: $loginViewModel.user) 
+                        .tabItem { Label("Home", systemImage: "house.fill") }
+                    Text("")
+                        .tabItem { Label("Travel", systemImage: "map") }
+                    ExploreView()
+                        .tabItem { Label("Offers", systemImage: "magnifyingglass") }
+                    Text("")
+                        .tabItem { Label("Redeem", systemImage: "star") }
+                    Text("")
+                        .tabItem { Label("More", systemImage: "line.3.horizontal") }
+                    TestView()
+                        .tabItem { Label("Test", systemImage: "testtube.2") }
+                }
+            } else {
+                LoginView(vm: loginViewModel)
+            }
         }
+        .onAppear {
+            loginViewModel.user = Auth.auth().currentUser
+        }
+        .animation(.easeInOut, value: loginViewModel.user != nil)
     }
 }
 
