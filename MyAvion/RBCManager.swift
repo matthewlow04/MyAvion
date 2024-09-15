@@ -312,6 +312,7 @@ struct TransactionBody{
     var amount: Int
     var note: String
     var type: String
+}
 
 struct LoginResponse: Codable {
     let accessToken: String
