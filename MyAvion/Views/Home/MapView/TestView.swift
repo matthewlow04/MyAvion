@@ -51,7 +51,7 @@ struct TestView: View {
             Text("Companies")
                 .font(.system(size: 20))
             Button("Add Company"){
-                dataManager.addCompany(name: "Lazeez", address: "170 University Avenue West", coordinates: Coordinates(latitude: 43.47441932085694, longitude: -80.5388761323675), businessCategory: "Food and Drink")
+                dataManager.addCompany(name: "Lazeez", address: "170 University Avenue West", coordinates: Coordinates(latitude: 43.47441932085694, longitude: -80.5388761323675), businessCategory: "Food and Drink", imageUrl: "")
             }
             Text("RBC Members")
                 .font(.system(size: 20))

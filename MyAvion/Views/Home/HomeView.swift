@@ -44,7 +44,7 @@ struct HomeView: View {
                         HStack(spacing: 30) {
                             ForEach(dataManager.rewards) { reward in
                                 let company = dataManager.fetchCompanyById(companyId: reward.companyId)
-                                OfferView(logo: reward.imageUrl, image: reward.imageUrl, name: company?.name ?? "", description: reward.name, time: "2 days")
+                                OfferView(logo: company?.imageUrl ?? "", image: reward.imageUrl, name: company?.name ?? "", description: reward.name, time: "2 days")
                             }
                         }
                         .padding()
@@ -65,7 +65,7 @@ struct HomeView: View {
                                     selectedCompany = company
                                     isShowingOffer = true
                                 } label: {
-                                    OfferView(logo: promotion.imageUrl, image: promotion.imageUrl, name: company?.name ?? "", description: promotion.name, time: "2 days")
+                                    OfferView(logo: company?.imageUrl ?? "", image: promotion.imageUrl, name: company?.name ?? "", description: promotion.name, time: "2 days")
                                     
                                 }
                                 
