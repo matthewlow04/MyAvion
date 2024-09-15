@@ -106,7 +106,7 @@ class DataManager: ObservableObject{
         let coordinatesDict = ["latitude": coordinates.latitude, "longitude": coordinates.longitude]
         
         let ref = db.collection("Companies").document(name)
-        ref.setData(["id": id.uuidString, "name":name, "address":address, "coordinates":coordinatesDict, "businessCategory": businessCategory]){ error in
+        ref.setData(["id": id.uuidString, "name":name, "address":address, "coordinates":coordinatesDict, "businessCategory": businessCategory, "rewards": [], "promotions": []]){ error in
             if let error = error{
                 print(error.localizedDescription)
             }
