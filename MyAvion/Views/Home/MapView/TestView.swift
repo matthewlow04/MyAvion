@@ -16,7 +16,7 @@ struct TestView: View {
             Text("Promotions")
                 .font(.system(size: 20))
             Button("Add Promotion"){
-                dataManager.addPromotions(companyID: "ZZ3451", name: "Lazeez", points: 50, startDate: Date.now, endDate: Date.now)
+                dataManager.addPromotions(companyID: "ZZ3451", name: "Lazeez", points: 50, startDate: Date.now, endDate: Date.now, imageUrl: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fvector%2Fbig-smile-emoticon-with-thumbs-up-gm1124532572-295250550&psig=AOvVaw1yHFLweMRLVrgPaU4W85H5&ust=1726470869231000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLDV26izxIgDFQAAAAAdAAAAABAJ")
             }
             Button("Fetch Promotion"){
                 Task{
@@ -29,7 +29,10 @@ struct TestView: View {
             Text("Rewards")
                 .font(.system(size: 20))
             Button("Add Reward"){
-                dataManager.addRewards(companyID: "JW334", name: "Free Drink", pointCost: 150, startDate: Date.now, expiryDate: Date.now)
+                dataManager.addRewards(companyID: "JW334", name: "Free Drink", pointCost: 150, startDate: Date.now, expiryDate: Date.now, imageUrl: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fvector%2Fbig-smile-emoticon-with-thumbs-up-gm1124532572-295250550&psig=AOvVaw1yHFLweMRLVrgPaU4W85H5&ust=1726470869231000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLDV26izxIgDFQAAAAAdAAAAABAJ")
+            }
+            Button("Add Reward to Company"){
+                dataManager.addRewardToCompany(companyId: "2EF2A7E0-D063-4343-BC83-BC82DEB855F9", rewardId: "61131F64-0C43-41BD-BC5C-65A68B392280")
             }
             Button("Fetch Reward"){
                 Task{
