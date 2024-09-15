@@ -68,19 +68,13 @@ struct MapView: View {
             }
             .padding()
 
-            .onAppear{
-                Task{
-                   
-                }
-                
-            }
-
             VStack(spacing: 20){
                 ForEach(vm.filteredCompanies){ company in
                     CompanyView(company: company)
                     
                 }
             }
+            .padding()
             
         }
         .onAppear{

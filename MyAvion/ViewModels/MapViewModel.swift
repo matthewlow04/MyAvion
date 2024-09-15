@@ -17,15 +17,15 @@ class MapViewModel: ObservableObject{
     var filteredCompanies: [Company]{
         switch selectedCategory {
         case .none:
-            return companies
+            return Company.mockCompanies
         case .dining:
-            return companies.filter{$0.businessCategory == Company.businessCategory.dining.rawValue}
+            return Company.mockCompanies.filter{$0.businessCategory == Company.businessCategory.dining.rawValue}
         case .entertainment:
-            return companies.filter{$0.businessCategory == Company.businessCategory.entertainment.rawValue}
+            return Company.mockCompanies.filter{$0.businessCategory == Company.businessCategory.entertainment.rawValue}
         case .grocery:
-            return companies.filter{$0.businessCategory == Company.businessCategory.grocery.rawValue}
+            return Company.mockCompanies.filter{$0.businessCategory == Company.businessCategory.grocery.rawValue}
         case .retail:
-            return companies.filter{$0.businessCategory == Company.businessCategory.retail.rawValue}
+            return Company.mockCompanies.filter{$0.businessCategory == Company.businessCategory.retail.rawValue}
             
         }
     }

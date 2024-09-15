@@ -75,28 +75,29 @@ struct HomeView: View {
                         .padding()
                         
                     }
+                    Text("Community")
+                        .font(.largeTitle)
+                    
+                    MapView()
+                    
+                    Button(action: {
+                        isShowingNomination = true
+                    }, label: {
+                        Text("Nominate A Company")
+                            .modifier(ConfirmButtonModifier())
+                    })
+                    .padding(.vertical)
+                    
+                    Button(action: {
+                        isShowingNominationList = true
+                    }, label: {
+                        Text("View Nominated Companies")
+                            .modifier(ConfirmButtonModifier())
+                    })
+                    .padding(.vertical)
+                    
                 }
                 
-                Text("Community")
-                    .font(.largeTitle)
-                
-                MapView()
-                
-                Button(action: {
-                    isShowingNomination = true
-                }, label: {
-                    Text("Nominate A Company")
-                        .modifier(ConfirmButtonModifier())
-                })
-                .padding(.vertical)
-                
-                Button(action: {
-                    isShowingNominationList = true
-                }, label: {
-                    Text("View Nominated Companies")
-                        .modifier(ConfirmButtonModifier())
-                })
-                .padding(.vertical)
                 
                 
             }

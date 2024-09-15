@@ -57,6 +57,20 @@ struct Promotion: Identifiable{
     var imageUrl: String
 }
 
+extension Company{
+    static var mockCompanies: [Company] = [
+        .init(name: "Campus Pizza", address: "160 University Ave W", coordinates: Coordinates(latitude: 43.4722, longitude: -80.5380), businessCategory: businessCategory.dining.rawValue, rewards: [], promotions: []),
+        
+        .init(name: "MyungGA Korean Restaurant", address: "256 Phillip St", coordinates: Coordinates(latitude: 43.4736, longitude: -80.5372), businessCategory: businessCategory.dining.rawValue, rewards: [], promotions: []),
+        
+            .init(name: "iPho Vietnamese Cuisine", address: "150 University Ave W", coordinates: Coordinates(latitude: 43.4727, longitude: -80.5360), businessCategory: businessCategory.dining.rawValue, rewards: [], promotions: []),
+        
+        .init(name: "Farah Foods", address: "256 Phillip St", coordinates: Coordinates(latitude: 43.44625, longitude: -80.5236), businessCategory: businessCategory.grocery.rawValue, rewards: [], promotions: []),
+        
+        .init(name: "Uniclaw", address: "140 University Ave W", coordinates: Coordinates(latitude: 43.4728, longitude: -80.5348), businessCategory: businessCategory.entertainment.rawValue, rewards: [], promotions: [])
+    ]
+}
+
 struct FirebaseMember: Identifiable{
     var id = UUID()
     var memberId: String
