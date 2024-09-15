@@ -158,6 +158,13 @@ class DataManager: ObservableObject{
         ref.updateData(["rewards": FieldValue.arrayUnion([rewardId])])
     }
     
+    func addPromotionToCompany(companyId: String, promotionId: String){
+        let db = Firestore.firestore()
+        let ref = db.collection("Companies").document(companyId)
+        
+        ref.updateData(["promotions": FieldValue.arrayUnion([promotionId])])
+    }
+    
     func addConnection(idConnection: IdConnection){
         let db = Firestore.firestore()
         let ref = db.collection("Connections").document(idConnection.firebaseID)
