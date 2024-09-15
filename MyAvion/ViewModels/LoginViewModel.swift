@@ -73,7 +73,7 @@ class LoginViewModel: ObservableObject {
     
     func validEmailAddress() -> Bool{
         let pattern = Regex {
-            OneOrMore(.word)
+            OneOrMore(.any)
             "@"
             OneOrMore(.word)
             "."
