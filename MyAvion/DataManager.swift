@@ -75,6 +75,7 @@ class DataManager: ObservableObject{
                     longitude: coordinatesData["longitude"] ?? 0.0
                 )
                 let businessCategory = data["businessCategory"] as? String ?? ""
+                let imageUrl = data["imageUrl"] as? String ?? ""
                 
                 let rewards: [Reward] = []
                 let promotions: [Promotion] = [] 
@@ -85,6 +86,7 @@ class DataManager: ObservableObject{
                     address: address,
                     coordinates: coordinates,
                     businessCategory: businessCategory,
+                    imageUrl: imageUrl,
                     rewards: rewards,
                     promotions: promotions
                 )
@@ -145,13 +147,13 @@ class DataManager: ObservableObject{
         }
     }
     
-    func addCompany(name: String, address: String, coordinates: Coordinates, businessCategory: String){
+    func addCompany(name: String, address: String, coordinates: Coordinates, businessCategory: String, imageUrl: String){
         let db = Firestore.firestore()
         let id = UUID()
         let coordinatesDict = ["latitude": coordinates.latitude, "longitude": coordinates.longitude]
         
         let ref = db.collection("Companies").document(id.uuidString)
-        ref.setData(["id": id.uuidString, "name":name, "address":address, "coordinates":coordinatesDict, "businessCategory": businessCategory, "rewards": [], "promotions": []]){ error in
+        ref.setData(["id": id.uuidString, "name":name, "address":address, "coordinates":coordinatesDict, "businessCategory": businessCategory, "imageUrl": imageUrl, "rewards": [], "promotions": []]){ error in
             if let error = error{
                 print(error.localizedDescription)
             }

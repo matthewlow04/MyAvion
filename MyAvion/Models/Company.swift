@@ -13,6 +13,7 @@ struct Company: Identifiable{
     var address: String
     var coordinates: Coordinates
     var businessCategory: String
+    var imageUrl: String
     
     enum sortType: String, CaseIterable{
         case distance = "Distance"

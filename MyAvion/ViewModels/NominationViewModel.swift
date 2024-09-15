@@ -13,6 +13,7 @@ class NominateCompanyViewModel: ObservableObject {
     @Published var latitude: String = ""
     @Published var longitude: String = ""
     @Published var businessCategory: String = Company.businessCategory.none.rawValue
+    @Published var imageUrl: String = ""
     @Published var showingAlert: Bool = false
     @Published var alertTitle: String = ""
     @Published var alertMessage: String = ""
@@ -56,7 +57,7 @@ class NominateCompanyViewModel: ObservableObject {
         
         let coordinates = Coordinates(latitude: Double(latitude)!, longitude: Double(longitude)!)
         
-        let company = Company(name: companyName, address: address, coordinates: coordinates, businessCategory: businessCategory, rewards: [], promotions: [])
+        let company = Company(name: companyName, address: address, coordinates: coordinates, businessCategory: businessCategory, imageUrl: imageUrl, rewards: [], promotions: [])
         let nominatedCompany = NominatedCompany(companyId: company.id.uuidString, nominators: [])
         
         alertTitle = "Success"
