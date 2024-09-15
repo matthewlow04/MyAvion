@@ -20,10 +20,17 @@ struct HomeView: View {
     @State var isShowingOffer = false
     @State var selectedPromotion: Promotion? = nil
     @State var selectedCompany: Company? = nil
+    @State var isTracking = false
     
     var body: some View {
         NavigationStack {
-            
+            HStack{
+                Spacer()
+                Toggle(isOn: $isTracking) {
+                    Text("Track Data")
+                }
+                .padding(5)
+            }
             ScrollView {
                 VStack(alignment: .leading) {
                     HStack {
@@ -89,7 +96,7 @@ struct HomeView: View {
                     .padding(.vertical)
                     
                     Button(action: {
-                        isShowingNominationList = true
+//                        isShowingNominationList = true
                     }, label: {
                         Text("View Nominated Companies")
                             .modifier(ConfirmButtonModifier())
@@ -113,7 +120,7 @@ struct HomeView: View {
                 VStack(alignment: .leading, spacing: 20){
                     Text("Redeem Offer")
                         .font(.system(size: 30))
-                    OfferView(logo: selectedPromotion?.imageUrl ?? "", image: selectedPromotion?.imageUrl ?? "", name: selectedCompany?.name ?? "", description: selectedPromotion?.name ?? "", time: "2 days")
+                    OfferView(logo: selectedCompany?.imageUrl ?? "", image: selectedPromotion?.imageUrl ?? "", name: selectedCompany?.name ?? "", description: selectedPromotion?.name ?? "", time: "2 days")
                     if isLoadingPoints{
                         ProgressView()
                     } else {

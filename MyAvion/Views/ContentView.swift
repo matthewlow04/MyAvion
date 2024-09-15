@@ -26,8 +26,8 @@ struct ContentView: View {
                         .tabItem { Label("Redeem", systemImage: "star") }
                     Text("")
                         .tabItem { Label("More", systemImage: "line.3.horizontal") }
-                    TestView()
-                        .tabItem { Label("Test", systemImage: "testtube.2") }
+//                    TestView()
+//                        .tabItem { Label("Test", systemImage: "testtube.2") }
                 }
             } else {
                 LoginView(vm: loginViewModel)
