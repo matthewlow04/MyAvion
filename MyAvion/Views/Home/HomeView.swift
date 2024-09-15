@@ -13,7 +13,11 @@ struct HomeView: View {
     @EnvironmentObject var dataManager: DataManager
     @EnvironmentObject var rbcManager: RBCManager
     @State var balance: Int?
+    @State var rbcId: Int?
     @State var isLoadingPoints = false
+    @State var isShowingNomination = false
+    @State var isShowingNominationList = false
+    @State var isShowingOffer = false
     
     var body: some View {
         NavigationStack {
@@ -24,9 +28,9 @@ struct HomeView: View {
                         Text("Avion Rewards")
                             .font(.system(size: 20))
                         Spacer()
-                        Image(systemName: "person.circle")
+                        Image(systemName: "rectangle.portrait.and.arrow.right")
                             .resizable()
-                            .frame(width: 40, height: 40)
+                            .frame(width: 30, height: 30)
                             .onTapGesture {
                                 logout()
                             }
@@ -49,23 +53,88 @@ struct HomeView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 30) {
                             ForEach(0..<2) { _ in
-                                OfferView()
+                                Button {
+                                    isShowingOffer = true
+                                } label: {
+                                    OfferView()
+                                }
+                                
                             }
+                            .foregroundStyle(.foreground)
                         }
                         .padding()
+                        
+                        
+
+                        
                     }
                     
                     Text("Community")
                         .font(.largeTitle)
                     
                     MapView()
+                    
+                    Button(action: {
+                        isShowingNomination = true
+                    }, label: {
+                        Text("Nominate A Company")
+                            .modifier(ConfirmButtonModifier())
+                    })
+                    .padding(.vertical)
+                    
+                    Button(action: {
+                        isShowingNominationList = true
+                    }, label: {
+                        Text("View Nominated Companies")
+                            .modifier(ConfirmButtonModifier())
+                    })
+                    .padding(.vertical)
+                    
+
                 }
                 .padding()
                 .navigationTitle(Text("\(balance ?? 0) points"))
+                .fullScreenCover(isPresented: $isShowingNomination, content: {
+                    NominateCompanyView()
+                })
+                .fullScreenCover(isPresented: $isShowingNominationList, content: {
+                    NominateCompanyListView()
+                })
+                .sheet(isPresented: $isShowingOffer, content: {
+                    VStack(alignment: .leading, spacing: 20){
+                        Text("Redeem Offer")
+                            .font(.system(size: 30))
+                        OfferView()
+                        if isLoadingPoints{
+                            ProgressView()
+                        } else {
+                            Button(action: {
+                                Task{
+                                    isLoadingPoints = true
+                                    await rbcManager.getMember(memberId:rbcId ?? 0)
+                                    await rbcManager.createTransaction(memberId: rbcId ?? 0, transactionBody: TransactionBody(amount: -100, note: "asdfad", type: "PAYMENT"))
+                                    isLoadingPoints = false
+                                }
+                            }, label: {
+                                Text("Redeem Now")
+                                    .modifier(ConfirmButtonModifier())
+                                    .frame(width: 300)
+                            })
+                        }
+                        
+                        
+                        
+                      
+                    }
+                   
+                
+                })
                 .onAppear{
                     Task{
+                        await dataManager.fetchCompanies()
                         isLoadingPoints = true
                         if let rbcID = await dataManager.fetchRbcID(firebaseID: user?.uid ?? ""){
+                            rbcId = rbcID
                                                         
                             if let member = await rbcManager.getMember(memberId: rbcID){
                                 balance = member.balance
@@ -80,6 +149,7 @@ struct HomeView: View {
                 
             }
         }
+        
     }
 
     func logout() {
@@ -92,6 +162,4 @@ struct HomeView: View {
     }
 }
 
-#Preview {
-    HomeView(user: .constant(nil))
-}
+
