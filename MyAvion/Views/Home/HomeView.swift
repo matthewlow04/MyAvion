@@ -36,8 +36,8 @@ struct HomeView: View {
                         .font(.largeTitle)
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 30) {
-                            ForEach(0..<2) { _ in
-                                OfferView()
+                            ForEach(dataManager.rewards) { reward in
+                                OfferView(logo: "promotion.imageUrl", image: reward.imageUrl, name: "", description: reward.name, time: "2 days")
                             }
                         }
                         .padding()
@@ -48,8 +48,8 @@ struct HomeView: View {
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 30) {
-                            ForEach(0..<2) { _ in
-                                OfferView()
+                            ForEach(dataManager.promotions) { promotion in
+                                OfferView(logo: "promotion.imageUrl", image: promotion.imageUrl, name: "", description: promotion.name, time: "2 days")
                             }
                         }
                         .padding()

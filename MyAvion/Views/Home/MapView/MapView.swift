@@ -12,12 +12,15 @@ struct MapView: View {
     
     @State private var position: MapCameraPosition = .userLocation(fallback: .automatic)
     @StateObject var vm = MapViewModel()
+    @EnvironmentObject var dataManager: DataManager
 
     var body: some View {
         VStack {
             Map(position: $position) {
-                ForEach(vm.filteredLocations) { location in
-                    Marker(location.name, coordinate: location.coordinate)
+                ForEach(dataManager.companies) { company in
+                    
+                    Marker(company.name, coordinate: CLLocationCoordinate2D(latitude: company.coordinates.latitude, longitude: company.coordinates.longitude))
+                        
                 }
             }
             .frame(height: 400)
@@ -63,16 +66,17 @@ struct MapView: View {
             }
             .padding()
             
-            
 
-            
             VStack(spacing: 20){
-                ForEach(0..<3){ _ in
-                    CompanyView()
+                ForEach(dataManager.companies){ company in
+                    CompanyView(company: company)
                     
                 }
             }
             
+        }
+        .onAppear{
+            vm.companies = dataManager.companies
         }
     }
 }

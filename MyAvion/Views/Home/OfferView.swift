@@ -8,10 +8,15 @@
 import SwiftUI
 
 struct OfferView: View {
+    var logo: String
+    var image: String
+    var name: String
+    var description: String
+    var time: String
     var body: some View {
         VStack{
             ZStack(alignment:.topLeading){
-                AsyncImage(url: URL(string: "https://cdn.prod.website-files.com/630d4d1c4a462569dd189855/64e67dfb31929f572b21d128_2%20(1).webp")) { image in
+                AsyncImage(url: URL(string: image)) { image in
                     image
                         .resizable()
                         .scaledToFill()
@@ -27,7 +32,7 @@ struct OfferView: View {
                 
                 .frame(height: 120)
                 
-                AsyncImage(url: URL(string: "https://mma.prnewswire.com/media/2143484/Lazeez_Lazeez_Shawarma_Celebrates_10th_Anniversary_and_Gives_Out.jpg?w=400")) { image in
+                AsyncImage(url: URL(string: logo)) { image in
                     image
                         .resizable()
                         .scaledToFill()
@@ -48,14 +53,14 @@ struct OfferView: View {
             }
             
             VStack(alignment: .leading, spacing: 10){
-                Text("BillGong")
+                Text(name)
                     .font(.system(size: 18))
-                Text("Earn 2x Avion points when you shop at Aritzia, only for you")
+                Text(description)
                     .font(.system(size: 13))
                 HStack{
                     Image(systemName: "clock.fill")
                         .foregroundStyle(.red)
-                    Text("2 days")
+                    Text(time)
                 }
                 .font(.system(size: 13))
               
@@ -70,7 +75,4 @@ struct OfferView: View {
     }
 }
 
-#Preview {
-    OfferView()
-}
 

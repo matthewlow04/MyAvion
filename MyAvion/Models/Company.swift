@@ -13,6 +13,21 @@ struct Company: Identifiable{
     var address: String
     var coordinates: Coordinates
     var businessCategory: String
+    
+    enum sortType: String, CaseIterable{
+        case distance = "Distance"
+        case expiryDate = "Expiry Date"
+        case mostPoints = "Most Points"
+    }
+    
+    enum businessCategory: String, CaseIterable{
+        case none
+        case dining
+        case entertainment
+        case grocery
+        case retail
+    }
+    
     var rewards: [Reward]
     var promotions: [Promotion]
 }

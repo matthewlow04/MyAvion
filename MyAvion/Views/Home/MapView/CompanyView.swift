@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct CompanyView: View {
+    var company: Company
     var body: some View {
         VStack(alignment: .leading, spacing: 20){
             HStack{
-                Text("Sweet Dreams Tea Shop")
+                Text(company.name)
                     .font(.system(size: 20))
                 Spacer()
                 Text("150 m")
@@ -22,7 +23,7 @@ struct CompanyView: View {
             Text("Earn 1.5x Avion points for every $1 spend.")
             
             HStack{
-                Text("Food & Drink")
+                Text(company.businessCategory)
                     .padding(5)
                     .clipShape(.capsule)
                     .background(Capsule().stroke(lineWidth: 0.5))
@@ -41,6 +42,6 @@ struct CompanyView: View {
     }
 }
 
-#Preview {
-    CompanyView()
-}
+//#Preview {
+//    CompanyView()
+//}
