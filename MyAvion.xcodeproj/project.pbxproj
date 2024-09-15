@@ -32,6 +32,8 @@
 		A0AECB152C96740B0012191B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AECB142C96740B0012191B /* LoginView.swift */; };
 		A0AECB172C9674220012191B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AECB162C9674220012191B /* LoginViewModel.swift */; };
 		A0AECB192C9677850012191B /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AECB182C9677850012191B /* SignUpView.swift */; };
+		A0AECB1D2C9699AC0012191B /* RBCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AECB1C2C9699AC0012191B /* RBCManager.swift */; };
+		A0AECB1F2C9699F20012191B /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AECB1E2C9699F20012191B /* Keys.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +78,8 @@
 		A0AECB142C96740B0012191B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A0AECB162C9674220012191B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		A0AECB182C9677850012191B /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		A0AECB1C2C9699AC0012191B /* RBCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBCManager.swift; sourceTree = "<group>"; };
+		A0AECB1E2C9699F20012191B /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +139,8 @@
 				A0AECAEF2C9630920012191B /* Models */,
 				A0AECAC52C96302F0012191B /* MyAvionApp.swift */,
 				A0AECB0E2C964CBC0012191B /* DataManager.swift */,
+				A0AECB1C2C9699AC0012191B /* RBCManager.swift */,
+				A0AECB1E2C9699F20012191B /* Keys.swift */,
 				A0AECAC92C9630300012191B /* Assets.xcassets */,
 				A0AECB032C9641170012191B /* GoogleService-Info.plist */,
 				A0AECACB2C9630300012191B /* Preview Content */,
@@ -366,6 +372,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0AECB132C9653510012191B /* TestView.swift in Sources */,
+				A0AECB1F2C9699F20012191B /* Keys.swift in Sources */,
 				A0AECB192C9677850012191B /* SignUpView.swift in Sources */,
 				A0AECAF52C9630C40012191B /* HomeView.swift in Sources */,
 				A0AECB0F2C964CBC0012191B /* DataManager.swift in Sources */,
@@ -378,6 +385,7 @@
 				A0AECB112C964E2D0012191B /* Company.swift in Sources */,
 				A0AECAF72C9630CE0012191B /* OfferView.swift in Sources */,
 				A0AECB152C96740B0012191B /* LoginView.swift in Sources */,
+				A0AECB1D2C9699AC0012191B /* RBCManager.swift in Sources */,
 				A0AECAF92C9630F90012191B /* ExploreView.swift in Sources */,
 				A0AECB022C9633860012191B /* CompanyView.swift in Sources */,
 			);

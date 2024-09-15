@@ -11,6 +11,7 @@ import Firebase
 @main
 struct MyAvionApp: App {
     @StateObject var dataManager = DataManager()
+    @StateObject var rbcManager = RBCManager()
     
     init(){
         FirebaseApp.configure()
@@ -20,6 +21,7 @@ struct MyAvionApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(dataManager)
+                .environmentObject(rbcManager)
         }
     }
 }
