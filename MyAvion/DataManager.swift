@@ -26,44 +26,61 @@ class DataManager: ObservableObject{
         }
     }
     
-    func fetchRewards() async{
-        rewards.removeAll()
+    func fetchRewards() async {
+        DispatchQueue.main.async {
+            self.rewards.removeAll()
+        }
+        
         let db = Firestore.firestore()
         let ref = db.collection("Rewards")
         
         do {
             let snapshot = try await ref.getDocuments()
-            for document in snapshot.documents{
+            var fetchedRewards: [Reward] = []
+            
+            for document in snapshot.documents {
                 let data = document.data()
                 let id = data["id"] as? String ?? ""
                 let name = data["name"] as? String ?? ""
                 let pointCost = data["points"] as? Int ?? -1
                 let companyId = data["companyId"] as? String ?? ""
-                let startDate = data["startDate"] as? Timestamp ?? Timestamp(date: Date.now)
-                let expiryDate = data["startDate"] as? Timestamp ?? Timestamp(date: Date.now)
+                let startDate = data["startDate"] as? Timestamp ?? Timestamp(date: Date())
+                let expiryDate = data["expiryDate"] as? Timestamp ?? Timestamp(date: Date())
                 let imageUrl = data["imageUrl"] as? String ?? ""
                 
-                
-                let reward = Reward(id: UUID(uuidString: id)!, companyId: companyId, name: name, pointCost: pointCost, startDate: startDate.dateValue(), expiryDate: expiryDate.dateValue(), imageUrl: imageUrl)
-                self.rewards.append(reward)
+                let reward = Reward(
+                    id: UUID(uuidString: id) ?? UUID(),
+                    companyId: companyId,
+                    name: name,
+                    pointCost: pointCost,
+                    startDate: startDate.dateValue(),
+                    expiryDate: expiryDate.dateValue(),
+                    imageUrl: imageUrl
+                )
+                fetchedRewards.append(reward)
             }
+            
+            DispatchQueue.main.async {
+                self.rewards = fetchedRewards
+            }
+            
         } catch {
-            print("error")
+            print("Error fetching rewards: \(error.localizedDescription)")
         }
-        
-        print("rewards")
-        print(self.rewards)
     }
-    
+
     func fetchCompanies() async {
-        DispatchQueue.main.async{
+        DispatchQueue.main.async {
             self.companies.removeAll()
         }
+        
         let db = Firestore.firestore()
         let ref = db.collection("Companies")
         
         do {
             let snapshot = try await ref.getDocuments()
+            var fetchedCompanies: [Company] = []
+            
             for document in snapshot.documents {
                 let data = document.data()
                 let id = data["id"] as? String ?? ""
@@ -78,8 +95,7 @@ class DataManager: ObservableObject{
                 let imageUrl = data["imageUrl"] as? String ?? ""
                 
                 let rewards: [Reward] = []
-                let promotions: [Promotion] = [] 
-                
+                let promotions: [Promotion] = []
                 let company = Company(
                     id: UUID(uuidString: id) ?? UUID(),
                     name: name,
@@ -90,14 +106,20 @@ class DataManager: ObservableObject{
                     rewards: rewards,
                     promotions: promotions
                 )
-                self.companies.append(company)
+                fetchedCompanies.append(company)
             }
+            
+            DispatchQueue.main.async {
+                self.companies = fetchedCompanies
+            }
+            
         } catch {
             print("Error fetching companies: \(error.localizedDescription)")
         }
         
         print("Fetched companies count: \(self.companies.count)")
     }
+
     
     func fetchCompanyById(companyId: String) -> Company? {
         print(companyId)
