@@ -38,21 +38,21 @@ class DataManager: ObservableObject{
                 let id = data["id"] as? String ?? ""
                 let name = data["name"] as? String ?? ""
                 let pointCost = data["points"] as? Int ?? -1
-                let companyId = data["companyID"] as? String ?? ""
+                let companyId = data["companyId"] as? String ?? ""
                 let startDate = data["startDate"] as? Timestamp ?? Timestamp(date: Date.now)
                 let expiryDate = data["startDate"] as? Timestamp ?? Timestamp(date: Date.now)
-                let imageURL = data["imageUrl"] as? String ?? ""
+                let imageUrl = data["imageUrl"] as? String ?? ""
                 
                 
-                let reward = Reward(id: UUID(uuidString: id)!, companyId: companyId, name: name, pointCost: pointCost, startDate: startDate.dateValue(), expiryDate: expiryDate.dateValue(), imageUrl: imageURL)
+                let reward = Reward(id: UUID(uuidString: id)!, companyId: companyId, name: name, pointCost: pointCost, startDate: startDate.dateValue(), expiryDate: expiryDate.dateValue(), imageUrl: imageUrl)
                 self.rewards.append(reward)
             }
         } catch {
             print("error")
         }
         
-        print("fetch")
-        print(self.rewards.count)
+        print("rewards")
+        print(self.rewards)
     }
     
     func fetchCompanies() async {
@@ -94,8 +94,13 @@ class DataManager: ObservableObject{
         
         print("Fetched companies count: \(self.companies.count)")
     }
-
     
+    func fetchCompanyById(companyId: String) -> Company? {
+        print(companyId)
+
+        return companies.first { $0.id.uuidString == companyId }
+    }
+
     func fetchPromotions() async{
         promotions.removeAll()
         let db = Firestore.firestore()
@@ -111,27 +116,27 @@ class DataManager: ObservableObject{
                 let companyID = data["companyID"] as? String ?? ""
                 let startDate = data["startDate"] as? Timestamp ?? Timestamp(date: Date.now)
                 let endDate = data["startDate"] as? Timestamp ?? Timestamp(date: Date.now)
-                let imageUrl = data["imageURL"] as? String ?? ""
+                let imageUrl = data["imageUrl"] as? String ?? ""
                 
                 
-                let promotion = Promotion(id: UUID(uuidString: id)!, companyId: companyID, name: name, points: points, startDate: startDate.dateValue(), endDate: endDate.dateValue(), imageUrl: imageUrl)
+                let promotion = Promotion(id: UUID(uuidString: id)!, companyID: companyID, name: name, points: points, startDate: startDate.dateValue(), endDate: endDate.dateValue(), imageUrl: imageUrl)
                 self.promotions.append(promotion)
             }
         } catch {
             print("error")
         }
         
-        print("fetch")
-        print(self.promotions.count)
+        print("promtions")
+        print(self.promotions)
     }
     
     
-    func addPromotions(companyID: String, name: String, points: Int, startDate: Date, endDate: Date, imageUrl: String){
+    func addPromotions(companyId: String, name: String, points: Int, startDate: Date, endDate: Date, imageUrl: String){
         let db = Firestore.firestore()
         let id = UUID()
         
         let ref = db.collection("Promotions").document(name)
-        ref.setData(["id": id.uuidString, "name":name, "points":points, "companyID":companyID, "startDate": Timestamp(date: startDate), "endDate": Timestamp(date: endDate), "imageUrl": imageUrl]){ error in
+        ref.setData(["id": id.uuidString, "name":name, "points":points, "companyID":companyId, "startDate": Timestamp(date: startDate), "endDate": Timestamp(date: endDate), "imageUrl": imageUrl]){ error in
             if let error = error{
                 print(error.localizedDescription)
             }
