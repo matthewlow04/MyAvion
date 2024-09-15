@@ -10,6 +10,7 @@ import SwiftUI
 //TODO
 struct TestView: View {
     @EnvironmentObject var dataManager: DataManager
+    @EnvironmentObject var rbcManager: RBCManager
     var body: some View {
         VStack{
             Text("Promotions")
@@ -29,6 +30,25 @@ struct TestView: View {
                 .font(.system(size: 20))
             Button("Add Reward"){
                 dataManager.addRewards(companyID: "ZZ3451", name: "Free Medium Shawarma", points: 600, startDate: Date.now, expiryDate: Date.now)
+            }
+            
+            Button("Create Member"){
+                Task{
+                    if let member = await rbcManager.createMember(memberBody: MemberBody(name: "aassa", address: "dfa", phone: "dfasd", email: "matthewtest123@gmail.com", balance: 12)){
+                        
+                        if let memberFetch = await rbcManager.getMember(memberId: member.id){
+                            print(memberFetch.name)
+                        }
+                    }
+
+                }
+            }
+            Button("Fetch Member"){
+                Task{
+                    if let member = await rbcManager.getMember(memberId: 520){
+                        dump(member)
+                    }
+                }
             }
         }
         
